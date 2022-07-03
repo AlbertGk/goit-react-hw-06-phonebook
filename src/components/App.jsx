@@ -20,11 +20,11 @@ export const App = () => {
   const filterId = useRef(nanoid());
 
   const dispatch = useDispatch();
-  const setContacts = payload => dispatch(addContact(payload)); // sprawdz roznice  dispatch(addContact(storageArray));
+  const setContacts = payload => dispatch(addContact(payload)); 
   const contacts = useSelector(state => state.contacts);
 
   const setFilter = payload => dispatch(filterContacts(payload));
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.contacts.filter);
   
   useEffect(() => {
     const storageArray = loadFromLocalStorage('contacts');
