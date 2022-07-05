@@ -7,7 +7,7 @@ import { Filter } from 'components/Filter';
 import { saveInLocalStorage, loadFromLocalStorage } from 'api/localStorage';
 import { useDispatch, useSelector } from 'react-redux';
 // import { RemoveButton } from 'components/RemoveButton';
-import { addContact, filterContacts } from '../store/actions';
+import { addContact, filterContacts, deleteContact } from '../store/actions';
 
 export const App = () => {
   // const [contacts, setContacts] = useState([]);
@@ -25,6 +25,9 @@ export const App = () => {
 
   const setFilter = payload => dispatch(filterContacts(payload));
   const filter = useSelector(state => state.contacts.filter);
+
+  const setDeletion = payload => dispatch(deleteContact(payload));
+
   
   useEffect(() => {
     const storageArray = loadFromLocalStorage('contacts');
@@ -91,8 +94,9 @@ export const App = () => {
   };
 
   const deletionHandler = id => {
-    const newContacts = contacts.filter(contact => contact.id !== id);
-    setContacts(newContacts);
+    //const newContacts = contacts.items.filter(contact => contact.id !== id);
+    //setContacts(newContacts);
+    setDeletion(id);
   };
 
   return (
