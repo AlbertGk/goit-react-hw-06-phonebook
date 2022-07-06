@@ -1,5 +1,5 @@
 export const ContactList = ({ contacts, filter, deletionHandler }) => {
-  console.log('contacts', contacts);
+  console.log('contacts', contacts.items);
   return (
     <ul>
       {

@@ -32,22 +32,22 @@ export const App = () => {
   useEffect(() => {
     const storageArray = loadFromLocalStorage('contacts');
     if (storageArray) {
-      // setContacts(storageArray);
+      setContacts(...storageArray);
       // console.log(`loadDM: ${contacts}`);
       // console.log(`lenDM: ${contacts.length}`);
-      // console.log('storageArray', storageArray);
-      // dispatch(addContact(storageArray.items));
+      console.log('storageArray', storageArray);
+      // dispatch(addContact(storageArray));
     }
     inputRef.current.focus();
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    // if (name === '') {
-    saveInLocalStorage('contacts', contacts);
-    // console.log(`saveDU: ${contacts}`);
-    // console.log(`lenDU: ${contacts.length}`);
-    // }
+    if (name === '') {
+    saveInLocalStorage('contacts', contacts.items);
+    console.log(`saveDU: ${contacts}`);
+    console.log(`lenDU: ${contacts.length}`);
+    }
   }, [contacts]);
 
   // componentDidMount() {
