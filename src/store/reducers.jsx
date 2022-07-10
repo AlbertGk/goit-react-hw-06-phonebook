@@ -1,5 +1,10 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-import { addContact, filterContacts, deleteContact } from '../store/actions';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  addContact,
+  filterContacts,
+  deleteContact,
+  addFromLocalStorage,
+} from '../store/actions';
 
 const initialState = {
   items: [],
@@ -11,6 +16,9 @@ export const contactReducer = createReducer(initialState, builder => {
     .addCase(addContact, (state, action) => {
       state.items = [...state.items, action.payload];
     })
+    .addCase(addFromLocalStorage, (state, action) => {
+      state.items = [...state.items, ...action.payload];
+    })
     .addCase(filterContacts, (state, action) => {
       state.filter = action.payload;
     })
@@ -18,6 +26,6 @@ export const contactReducer = createReducer(initialState, builder => {
       state.items = state.items.filter(
         contact => contact.id !== action.payload
       );
-  
-    });
+    })
+  .addDefaultCase((state, action) => {})
 });
